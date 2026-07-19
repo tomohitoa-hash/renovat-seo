@@ -164,7 +164,12 @@ function rip_footer() {
 }
 
 function rip_cta($class = '') {
-    return '<section class="rip-cta ' . esc_attr($class) . '"><h2>不用品・残置物・廃棄物の相談先にお困りの事業者様へ</h2><p>株式会社リノバトでは、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートしています。紹介案件や急ぎの見積りもお気軽にご相談ください。</p><div class="rip-actions"><a class="rip-btn" href="/contact.html#form">無料相談する</a><a class="rip-phone" href="tel:' . RIP_TEL . '">電話相談：' . RIP_PHONE . '</a></div></section>';
+    $placement = $class ? $class : 'inline';
+    return '<section class="rip-cta ' . esc_attr($class) . '"><h2>不用品・残置物・廃棄物の相談先にお困りの事業者様へ</h2><p>所在地・品目・量をもとに、無料で進め方を診断します。許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p><div class="rip-actions"><a class="rip-btn" data-rip-cta="' . esc_attr($placement) . '" href="/contact.html#form?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=' . rawurlencode($placement) . '">無料診断を依頼する</a><a class="rip-phone" data-rip-phone="' . esc_attr($placement) . '" href="tel:' . RIP_TEL . '">電話相談：' . RIP_PHONE . '</a></div></section>';
+}
+
+function rip_tracking_script() {
+    return '<script>(function(){function track(name,el){if(typeof window.gtag!=="function")return;window.gtag("event",name,{event_category:"lead_generation",cta_placement:el.getAttribute("data-rip-cta")||el.getAttribute("data-rip-phone")||"unknown",page_location:window.location.href});}document.addEventListener("click",function(e){var c=e.target.closest("[data-rip-cta]");if(c)track("free_diagnosis_cta_click",c);var p=e.target.closest("[data-rip-phone]");if(p)track("phone_cta_click",p);});})();</script>';
 }
 
 function rip_page_html($slug, $p) {
@@ -181,7 +186,7 @@ function rip_page_html($slug, $p) {
     $html .= '<section><h2>よくある質問</h2><div class="rip-faq">' . rip_faq($p['faq']) . '</div></section>';
     $html .= '<section><h2>関連サービス</h2><ul class="rip-links">' . rip_links(array_merge($p['related'], rip_common_links())) . '</ul></section>';
     $html .= rip_cta('rip-cta-bottom');
-    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_footer();
+    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_footer() . rip_tracking_script();
     return $html;
 }
 
@@ -195,7 +200,7 @@ function rip_parent_html() {
     foreach ($pages as $slug => $page) {
         $html .= '<a class="rip-industry-card" href="/industry/' . esc_attr($slug) . '/"><span>' . esc_html($page['label']) . '</span><strong>' . esc_html($page['title']) . '</strong><small>' . esc_html($page['description']) . '</small></a>';
     }
-    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_footer();
+    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_footer() . rip_tracking_script();
     return $html;
 }
 
