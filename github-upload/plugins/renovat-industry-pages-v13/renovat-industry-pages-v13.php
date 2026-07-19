@@ -174,7 +174,7 @@ function rip_mobile_cta() {
 }
 
 function rip_tracking_script() {
-    return '<script>(function(){function track(name,el){if(typeof window.gtag!=="function")return;window.gtag("event",name,{event_category:"lead_generation",cta_placement:el.getAttribute("data-rip-cta")||el.getAttribute("data-rip-phone")||"unknown",page_location:window.location.href});}document.addEventListener("click",function(e){var c=e.target.closest("[data-rip-cta]");if(c)track("free_diagnosis_cta_click",c);var p=e.target.closest("[data-rip-phone]");if(p)track("phone_cta_click",p);});})();</script>';
+    return '<script>(function(){var source=new URLSearchParams(window.location.search);var params=["gclid","gbraid","wbraid","utm_source","utm_medium","utm_campaign","utm_term","utm_content"];document.querySelectorAll("[data-rip-cta]").forEach(function(a){var destination=new URL(a.href,window.location.origin);params.forEach(function(name){if(source.get(name))destination.searchParams.set(name,source.get(name));});if(source.get("gclid")||source.get("gbraid")||source.get("wbraid")){destination.searchParams.set("utm_source","google");destination.searchParams.set("utm_medium","cpc");}a.href=destination.toString();});function track(name,el){if(typeof window.gtag!=="function")return;window.gtag("event",name,{event_category:"lead_generation",cta_placement:el.getAttribute("data-rip-cta")||el.getAttribute("data-rip-phone")||"unknown",page_location:window.location.href});}document.addEventListener("click",function(e){var c=e.target.closest("[data-rip-cta]");if(c)track("free_diagnosis_cta_click",c);var p=e.target.closest("[data-rip-phone]");if(p)track("phone_cta_click",p);});})();</script>';
 }
 
 function rip_page_html($slug, $p) {
