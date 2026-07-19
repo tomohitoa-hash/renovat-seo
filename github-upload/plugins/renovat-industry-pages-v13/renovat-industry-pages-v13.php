@@ -165,7 +165,7 @@ function rip_footer() {
 
 function rip_cta($class = '') {
     $placement = $class ? $class : 'inline';
-    return '<section class="rip-cta ' . esc_attr($class) . '"><h2>不用品・残置物・廃棄物の相談先にお困りの事業者様へ</h2><p>所在地・品目・量をもとに、無料で進め方を診断します。許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p><div class="rip-actions"><a class="rip-btn" data-rip-cta="' . esc_attr($placement) . '" href="/contact.html#form?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=' . rawurlencode($placement) . '">無料診断を依頼する</a><a class="rip-phone" data-rip-phone="' . esc_attr($placement) . '" href="tel:' . RIP_TEL . '">電話相談：' . RIP_PHONE . '</a></div></section>';
+    return '<section class="rip-cta ' . esc_attr($class) . '"><h2>不用品・残置物・廃棄物の相談先にお困りの事業者様へ</h2><p>所在地・品目・量をもとに、無料で進め方を診断します。許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p><div class="rip-actions"><a class="rip-btn" data-rip-cta="' . esc_attr($placement) . '" href="/contact.html?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=' . rawurlencode($placement) . '#form">無料診断を依頼する</a><a class="rip-phone" data-rip-phone="' . esc_attr($placement) . '" href="tel:' . RIP_TEL . '">電話相談：' . RIP_PHONE . '</a></div></section>';
 }
 
 function rip_tracking_script() {
