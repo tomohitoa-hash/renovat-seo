@@ -161,7 +161,7 @@ function rip_header($title, $description, $canonical, $keywords = '') {
 }
 
 function rip_footer() {
-    return '<footer class="rip-footer"><div class="rip-wrap rip-foot"><div><strong>株式会社リノバト</strong><br>〒503-1278 岐阜県養老郡養老町横屋129番地<br>電話：<a href="tel:' . RIP_TEL . '">' . RIP_PHONE . '</a><br>メール：<a href="mailto:' . RIP_EMAIL . '">' . RIP_EMAIL . '</a></div><nav><a href="/">トップ</a><a href="/industry/">業種別のご相談</a><a href="/company.html">会社概要</a><a href="/contact.html#form">お問い合わせ</a><a href="/legal/">特定商取引法に基づく表記</a><a href="/privacy-policy/">プライバシーポリシー</a><a href="/terms/">利用規約</a></nav></div></footer><script>document.addEventListener("click",function(e){var a=e.target.closest("a[href^=\'tel:\']");if(a&&typeof gtag==="function")gtag("event","phone_click",{link_url:a.href,phone_number:"' . RIP_PHONE . '"});});</script></body></html>';
+    return '<footer class="rip-footer"><div class="rip-wrap rip-foot"><div><strong>株式会社リノバト</strong><br>〒503-1278 岐阜県養老郡養老町横屋129番地<br>電話：<a href="tel:' . RIP_TEL . '">' . RIP_PHONE . '</a><br>メール：<a href="mailto:' . RIP_EMAIL . '">' . RIP_EMAIL . '</a></div><nav><a href="/">トップ</a><a href="/industry/">業種別のご相談</a><a href="/company.html">会社概要</a><a href="/contact.html#form">お問い合わせ</a><a href="/legal/">特定商取引法に基づく表記</a><a href="/privacy-policy/">プライバシーポリシー</a><a href="/terms/">利用規約</a></nav></div></footer><script>document.addEventListener("click",function(e){var a=e.target.closest("a[href^=\'tel:\']");if(a&&typeof gtag==="function")gtag("event","phone_click",{link_url:a.href,phone_number:"' . RIP_PHONE . '"});});</script>' . rip_tracking_script() . '</body></html>';
 }
 
 function rip_cta($class = '') {
@@ -191,7 +191,7 @@ function rip_page_html($slug, $p) {
     $html .= '<section><h2>よくある質問</h2><div class="rip-faq">' . rip_faq($p['faq']) . '</div></section>';
     $html .= '<section><h2>関連サービス</h2><ul class="rip-links">' . rip_links(array_merge($p['related'], rip_common_links())) . '</ul></section>';
     $html .= rip_cta('rip-cta-bottom');
-    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_footer() . rip_mobile_cta() . rip_tracking_script();
+    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_mobile_cta() . rip_footer();
     return $html;
 }
 
@@ -205,7 +205,7 @@ function rip_parent_html() {
     foreach ($pages as $slug => $page) {
         $html .= '<a class="rip-industry-card" href="/industry/' . esc_attr($slug) . '/"><span>' . esc_html($page['label']) . '</span><strong>' . esc_html($page['title']) . '</strong><small>' . esc_html($page['description']) . '</small></a>';
     }
-    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_footer() . rip_mobile_cta() . rip_tracking_script();
+    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_mobile_cta() . rip_footer();
     return $html;
 }
 
