@@ -165,7 +165,11 @@ function rip_footer() {
 
 function rip_cta($class = '') {
     $placement = $class ? $class : 'inline';
-    return '<section class="rip-cta ' . esc_attr($class) . '"><h2>不用品・残置物・廃棄物の相談先にお困りの事業者様へ</h2><p>所在地・品目・量をもとに、無料で進め方を診断します。許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p><div class="rip-actions"><a class="rip-btn" data-rip-cta="' . esc_attr($placement) . '" href="/contact.html?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=' . rawurlencode($placement) . '#form">無料診断を依頼する</a><a class="rip-phone" data-rip-phone="' . esc_attr($placement) . '" href="tel:' . RIP_TEL . '">電話相談：' . RIP_PHONE . '</a></div></section>';
+    return '<section class="rip-cta ' . esc_attr($class) . '"><p class="rip-cta-kicker">法人・紹介案件のご相談に対応</p><h2>回収・処理の進め方を無料で診断します</h2><p>所在地・品目・量が分かれば、写真だけでも概算相談がしやすくなります。許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p><ul class="rip-cta-points"><li>相談・診断は無料</li><li>写真があれば概算相談がスムーズ</li><li>許可を持つ協力業者と連携</li></ul><div class="rip-actions"><a class="rip-btn" data-rip-cta="' . esc_attr($placement) . '" href="/contact.html?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=' . rawurlencode($placement) . '#form">無料診断を依頼する</a><a class="rip-phone" data-rip-phone="' . esc_attr($placement) . '" href="tel:' . RIP_TEL . '">電話で状況を相談する</a></div></section>';
+}
+
+function rip_mobile_cta() {
+    return '<aside class="rip-mobile-cta" aria-label="無料診断への導線"><a data-rip-cta="mobile_sticky" href="/contact.html?utm_source=industry&utm_medium=organic&utm_campaign=free_diagnosis&utm_content=mobile_sticky#form">無料診断を依頼</a><a data-rip-phone="mobile_sticky" href="tel:' . RIP_TEL . '">電話で相談</a></aside><style>.rip-cta-kicker{margin:0 0 4px;font-size:14px;font-weight:800;color:#9ff0d4}.rip-cta-points{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 0;padding:0;list-style:none;font-size:14px}.rip-cta-points li:before{content:"✓ ";font-weight:900;color:#9ff0d4}.rip-mobile-cta{display:none}@media(max-width:760px){body{padding-bottom:70px}.rip-mobile-cta{position:fixed;bottom:0;left:0;right:0;z-index:99;display:grid;grid-template-columns:1.2fr 1fr;gap:8px;padding:9px 12px;background:#fff;box-shadow:0 -4px 16px rgba(16,36,31,.18)}.rip-mobile-cta a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:8px;font-weight:800;text-decoration:none}.rip-mobile-cta a:first-child{background:#08785f;color:#fff}.rip-mobile-cta a:last-child{border:2px solid #08785f;color:#08785f}}</style>';
 }
 
 function rip_tracking_script() {
@@ -186,7 +190,7 @@ function rip_page_html($slug, $p) {
     $html .= '<section><h2>よくある質問</h2><div class="rip-faq">' . rip_faq($p['faq']) . '</div></section>';
     $html .= '<section><h2>関連サービス</h2><ul class="rip-links">' . rip_links(array_merge($p['related'], rip_common_links())) . '</ul></section>';
     $html .= rip_cta('rip-cta-bottom');
-    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_footer() . rip_tracking_script();
+    $html .= '</main>' . rip_faq_schema($p['faq']) . rip_footer() . rip_mobile_cta() . rip_tracking_script();
     return $html;
 }
 
@@ -200,7 +204,7 @@ function rip_parent_html() {
     foreach ($pages as $slug => $page) {
         $html .= '<a class="rip-industry-card" href="/industry/' . esc_attr($slug) . '/"><span>' . esc_html($page['label']) . '</span><strong>' . esc_html($page['title']) . '</strong><small>' . esc_html($page['description']) . '</small></a>';
     }
-    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_footer() . rip_tracking_script();
+    $html .= '</div></section><section><h2>リノバトの役割</h2><p>株式会社リノバトは、自社で収集運搬・処分を行う会社ではありません。廃棄物・不用品・残置物・遺品整理・廃材処分などの相談に対し、許可を持つ協力業者と連携し、回収手配・処理手配・窓口一本化をサポートします。</p></section></main>' . rip_footer() . rip_mobile_cta() . rip_tracking_script();
     return $html;
 }
 
